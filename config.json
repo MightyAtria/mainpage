@@ -1,0 +1,5 @@
+{
+  "domain": "example.com",
+  "web_prefix": "/",
+  "nginx_deploy_path": "/usr/share/nginx/html"
+}
