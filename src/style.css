@@ -1,29 +1,201 @@
-body {
+:root {
+  --primary-text: #1d1d1f;
+  --secondary-text: #86868b;
+  --bg-color: #ffffff;
+  --font-family: "SF Pro Display", "-apple-system", "BlinkMacSystemFont", "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+body, html {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: #121212;
-  color: #eeeeee;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.content-container {
+  pointer-events: auto;
+}
+
+.main-title-wrapper {
+  display: inline-block;
+  text-align: left;
+  position: relative;
+}
+
+.main-title-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 160%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.greeting {
+  font-size: 1.5rem;
+  color: var(--secondary-text);
+  margin-bottom: -22px;
+  margin-left: 8px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+  width: max-content;
+}
+
+.greeting::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.greeting ruby {
+  ruby-align: center;
+}
+
+.greeting rt {
+  font-size: 0.8rem;
+  color: #b0b0b0;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  letter-spacing: -0.04em;
+  margin: 0;
+  user-select: none;
 }
 
-p {
-  color: #aaaaaa;
-  font-size: 1.2em;
+#reset-btn {
+  position: absolute;
+  right: -20px;
+  bottom: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ff7e67;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+#reset-btn svg {
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+}
+
+#reset-btn:hover {
+  background-color: #ff6045;
+  transform: scale(1.3);
+}
+
+#reset-btn:active {
+  transform: scale(0.9);
+}
+
+#reset-btn.hidden {
+  display: none !important;
+}
+
+.interactive-i {
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease, width 0.15s ease-out;
+  display: inline-block;
+  transform-origin: center center;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.interactive-i:not(.inflating):not(.gold):hover {
+  color: #0066cc;
+}
+
+.interactive-i:not(.inflating):not(.gold):active {
+  transform: scale(0.9);
+}
+
+.interactive-i.inflating {
+  transition: color 2s ease, transform 2s ease, width 0.15s ease-out;
+  color: #ff7e67;
+  transform: scale(1.6);
+}
+
+.interactive-i.gold {
+  color: #FFD700;
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+  transition: color 0.6s ease, transform 0.2s ease, width 0.15s ease-out;
+}
+
+.contact-info {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  pointer-events: auto;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 4rem;
+  }
+  .contact-info {
+    bottom: 16px;
+    right: 16px;
+  }
 }
