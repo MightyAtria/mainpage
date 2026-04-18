@@ -51,7 +51,7 @@ body, html {
 .main-title-wrapper::before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 140%;
@@ -64,7 +64,7 @@ body, html {
 .greeting {
   font-size: 1.5rem;
   color: var(--secondary-text);
-  margin-bottom: -22px;
+  margin-bottom: -14px;
   margin-left: 8px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -193,6 +193,12 @@ h1 {
 @media (max-width: 768px) {
   h1 {
     font-size: 4rem;
+  }
+  .greeting {
+    margin-bottom: -8px; 
+  }
+  .main-title-wrapper::before {
+    top: 50%; 
   }
   .contact-info {
     bottom: 16px;
