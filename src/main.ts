@@ -193,6 +193,27 @@ let mouse = { x: -1000, y: -1000, radius: 260 };
 window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
 window.addEventListener('mouseout', () => { mouse.x = -1000; mouse.y = -1000; });
 
+window.addEventListener('touchstart', (e) => { 
+  if (e.touches.length > 0) {
+    mouse.x = e.touches[0].clientX; 
+    mouse.y = e.touches[0].clientY; 
+  }
+});
+window.addEventListener('touchmove', (e) => { 
+  if (e.touches.length > 0) {
+    mouse.x = e.touches[0].clientX; 
+    mouse.y = e.touches[0].clientY; 
+  }
+}, { passive: true });
+window.addEventListener('touchend', () => { 
+  mouse.x = -1000; 
+  mouse.y = -1000; 
+});
+window.addEventListener('touchcancel', () => { 
+  mouse.x = -1000; 
+  mouse.y = -1000; 
+});
+
 class Particle {
   x: number; y: number; originX: number; originY: number; color: string; size: number; vx: number; vy: number; friction: number; ease: number;
 
