@@ -7,7 +7,7 @@ echo "Starting deployment process..."
 
 # Step 1: Ensure npm dependencies are installed (mostly useful if pulling straight from git)
 echo "Installing dependencies..."
-npm install
+npm ci
 
 # Step 2: Extract configurations using Node
 DOMAIN=$(node -p "require('./config.json').domain")
